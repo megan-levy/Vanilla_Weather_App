@@ -6,20 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Sanchez&display=swap" rel="stylesheet">
     <title>VanillaWeatherApp</title>
 </head>
 <body>
     <div class = "container">
         <div class = "weatherApp">
-        <h2>search bar will be here</h2>
+            <form id="searchEngine">
+                <div class="Change_Area" id="searchCity" class="col-2">
+                  <input
+                    type="text"
+                    id="test"
+                    placeholder="Change Location"
+                    autofocus="on"
+                  />
+                  <button type="submit" id="searching">Search</button>
+                  <div id="location" class="form-text">
+                    <strong>Enter a city to see a new location</strong>
+                  </div>
+                </div>
+            </form>
+        <h1>
+            Cincinnati
+        </h1>
         <div class="row">
             <div class="col-6">
                 <ul>
-                    <li>
-                        City
-                    </li>
+                    
                     <li>
                         High/Low
                     </li>
@@ -39,20 +51,20 @@
                </ul> 
             </div>
         </div>
-        <div class="container">
-            <div class="row">
+        <div class="container2" class ="forecast">
+            <div class="row" >
               <div class="col-2" id = "day1">
                 <strong> Friday </strong> <br />
                 45°/<strong>27°</strong> <br />
                 🌧️
               </div>
               <div class="col-2" id = "day2">
-                <strong> Saturday </strong><br />
+                <strong> Saturday  </strong><br />
                 60°/<strong>47°</strong> <br />
                 ☁️
               </div>
               <div class="col-2" id = "day3">
-                <strong> Sunday </strong><br />
+                <strong>  Sunday </strong><br />
                 55°/<strong>35°</strong> <br />
                 ☁️
               </div>
@@ -67,12 +79,13 @@
                 ☀️
               </div>
               <div class="col-2" id = "day6">
-                <strong> Weds </strong><br />
+                <strong> Wednesday </strong><br />
                 60°/<strong>49°</strong> <br />
                 ☀️
               </div>
             </div>
         </div>
+        <a href="https://github.com/megan-levy/Vanilla_Weather_App" id = "gitHub"> open-source code by Megan Levy </a>
     </div>
     <script src="src/index.js"></script>
 </body>
