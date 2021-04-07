@@ -1,15 +1,17 @@
 
-
 .searchEngine{
     border-radius: 20px;
     padding: 15px;
+    background-color: blanchedalmond;
 }
 button {
     border: 2px solid black;
     border-radius: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    transition: all 200ms ease-in-out;
 }
 .weatherApp {
-    max-width: 600px;
+    max-width: 700px;
     margin: 40px auto;
     padding: 40px;
     border: 3px solid black;
@@ -22,10 +24,37 @@ h1 {
   font-weight: 100;
   line-height: 28px;
   margin-bottom: 0;
-  padding-top: 15px;
+  padding-top: 25px;
 }
 .container2 {
-    padding: 10px;
-    margin-right: 20px;
-    margin-left: 20;
+    text-align: center;
+    margin: 35px 0;
+    padding-bottom: 20px;
+}
+.todayForecast {
+    list-style-type: none;
+}
+.currentTemp {
+    font-size: 80px;
+    max-width: 50%;
+    text-align: center;
+    margin-left: 50px;
+}
+.unit {
+    font-weight: 400;
+    position: relative;
+    line-height: 1;
+    top: -34px;
+    font-size: 28px;
+    margin-left: -50px;
+}
+.col-2 {
+    padding: 30px;
+    background-color: #2274A5;
+    margin: 10px;
+    border-radius: 5px;
+    color: black;
+    height: 150px;
+    line-height: 2;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
 }
