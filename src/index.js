@@ -1,10 +1,4 @@
-function showCelsiusConversion(event){
-    event.preventDefault();
-    let temp = document.querySelector("#currentTemp");
-    let Celsius = ((temp - 32) * 5/9);
-    let temperatureElement = document.querySelector("#currentTemp");
-    temperatureElement.innerHTML = Math.round(Number(Celsius));
-}
+
 
 function displayCurrentTemperature(response) {
     let currentTemperature = document.querySelector("#currentTemp");
@@ -58,6 +52,23 @@ dateTime.innerHTML = `Last updated on ${day} at ${hour}:${minute}`;
 let form = document.querySelector("#searchEngine");
 form.addEventListener("submit", displayLocation);
 
-let farenheitLink = document.querySelector("#farenheit");
+function showCelsiusConversion(event){
+    event.preventDefault();
+    let id = document.querySelector("#celsius");
+    let temperatureElement = document.querySelector("#currentTemp");
+    let Celsius = (parseFloat( temperatureElement.innerText) - 32) * 5/9;
+    temperatureElement.innerText = Math.round(Celsius);
+}
+function showFarenheitConversion(event){
+    event.preventDefault();
+    id = document.querySelector("#farenheit");
+    let temperatureElement = document.querySelector("#currentTemp");
+    let Farenheit = (parseFloat(temperatureElement.innerText)* 9/5) + 32;
+    temperatureElement.innerText = Math.round(Farenheit);
+}
+
+let farenheitLink = document.querySelector("#celsius");
 farenheitLink.addEventListener("click", showCelsiusConversion);
 
+let celsiuslink = document.querySelector("#farenheit");
+celsiuslink.addEventListener("click", showFarenheitConversion);
