@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>VanillaWeatherApp</title>
 </head>
 <body>
@@ -15,12 +16,12 @@
                 <div class="Change_Area" id="searchCity" class="col-2">
                   <input
                     type="text"
-                    id="test"
+                    id="inputLocation"
                     placeholder="Change Location"
                     autofocus="on"
                   />
                   <button type="submit" id="searching">Search</button>
-                  <div id="location" class="form-text">
+                  <div id="locationInput" class="form-text">
                     <strong>Enter a city to see a new location</strong>
                   </div>
                 </div>
@@ -28,26 +29,36 @@
         
         <div class="row">
             <div class="col-6">
-              <h1>
+              <h1 id ="city">
                 Cincinnati
             </h1>
                 <ul class = "todayForecast">
-                    
-                    <li>
-                        High/Low
+                    <li id = "dateTime">
+                       Last updated: Day/Time
                     </li>
-                    <li>
-                        Day/Time
+                    <li id = "windSpeed">
+                      wind speed
+                    </li>
+                    <li id = "precipitation">
+                      humidity
                     </li>
                 </ul>
             </div>
             <div class="col-6">
-               <span class = "currentTemp">
+               <span class = "currentTemp" id="currentTemp">
                  64
                </span>
-               <span class="unit">°F
-               </span>
-               </ul> 
+               <a href="#" class="unit" id = "farenheit">°F </a>  
+               <div class = "weatherIcon">
+                 <img
+                    src=""
+                    id = "icon"
+                    alt ="weather icon"
+                 />
+                 <span id = "description">
+                   description
+                 </span>
+               </div>
             </div>
         </div>
         <div class="container2" class ="forecast">
@@ -74,9 +85,10 @@
               </div>
               <div class="col-2" id = "day5">
                 <strong> Tues </strong><br />
-                60°/<strong>49°</strong> <br />
-                ☀️
+                64°/<strong>57°</strong> <br />
+                ⛅
               </div>
+              
             </div>
         </div>
         <a href="https://github.com/megan-levy/Vanilla_Weather_App" id = "gitHub"> open-source code by Megan Levy </a>
