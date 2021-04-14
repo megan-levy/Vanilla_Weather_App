@@ -1,24 +1,33 @@
 
-function displayForecast(response) {
-    console.log(response.data.daily);
-    let forecastElement = document.querySelector("#forecast");
-    let forecastHTML = `<div class = "row">`;
+function formatDate(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let day = date.getDay();
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    return days[day];
+}
 
-    let days = ["Thu", "Fri", "Sat", "Sun", "Mon" ];
-    days.forEach(function(days) {
+function displayForecast(response) {
+    let forecast = response.data.daily;
+
+    let forecastElement = document.querySelector("#forecast");
+
+    let forecastHTML = `<div class = "row">`;
+    forecast.forEach(function(forecastDay, index) {
+        if (index < 5) {
             forecastHTML = forecastHTML +
             `<div class = "col-2">
-                <div class = "forecastDay">${days}</div>
-                <img src = "http://openweathermap.org/img/wn/04d@2x.png" alt = "" width = "42"/>
+                <div class = "forecastDay">${formatDate(forecastDay.dt)}</div>
+                <img src = "http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt = "" width = "42"/>
             <div class = "forecastTemps">
-                <span class = "forecastHigh">65</span>
-                <span class = "forecastLow">45</span>
+                <span class = "forecastHigh">${Math.round(forecastDay.temp.max)}°/</span>
+                <span class = "forecastLow">${Math.round(forecastDay.temp.min)}°</span>
                 </div>
-            </div>`;
+            </div>`;}
     });
     forecastHTML = forecastHTML + `</div>`;
     forecastElement.innerHTML = forecastHTML; 
 }
+
 function getForecast(coordinates) {
     console.log(coordinates);
     let apiKey = "4a89eb9a057b7d42b2048718c9361f4a";
@@ -45,6 +54,7 @@ function displayCurrentTemperature(response) {
 
     getForecast(response.data.coord);
 }
+
 function search(city) {
     let apiKey = "4a89eb9a057b7d42b2048718c9361f4a";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
@@ -55,6 +65,22 @@ function handleSubmit(event) {
     event.preventDefault();
     let formInput = document.querySelector("#inputLocation");
     search(formInput.value);
+}
+
+function showCelsiusConversion(event){
+    event.preventDefault();
+    let id = document.querySelector("#celsius");
+    let temperatureElement = document.querySelector("#currentTemp");
+    let Celsius = (parseFloat( temperatureElement.innerText) - 32) * 5/9;
+    temperatureElement.innerText = Math.round(Celsius);
+}
+
+function showFarenheitConversion(event){
+    event.preventDefault();
+    id = document.querySelector("#farenheit");
+    let temperatureElement = document.querySelector("#currentTemp");
+    let Farenheit = (parseFloat(temperatureElement.innerText)* 9/5) + 32;
+    temperatureElement.innerText = Math.round(Farenheit);
 }
 
 let now = new Date();
@@ -69,6 +95,7 @@ let days = [
 "Friday",
 "Saturday"
 ];
+
 let day = days[now.getDay()];
 if (minute < 10) {
     minute = `0${minute}`;
@@ -80,21 +107,6 @@ dateTime.innerHTML = `Last updated on ${day} at ${hour}:${minute}`;
 
 let form = document.querySelector("#searchEngine");
 form.addEventListener("submit", handleSubmit);
-
-function showCelsiusConversion(event){
-    event.preventDefault();
-    let id = document.querySelector("#celsius");
-    let temperatureElement = document.querySelector("#currentTemp");
-    let Celsius = (parseFloat( temperatureElement.innerText) - 32) * 5/9;
-    temperatureElement.innerText = Math.round(Celsius);
-}
-function showFarenheitConversion(event){
-    event.preventDefault();
-    id = document.querySelector("#farenheit");
-    let temperatureElement = document.querySelector("#currentTemp");
-    let Farenheit = (parseFloat(temperatureElement.innerText)* 9/5) + 32;
-    temperatureElement.innerText = Math.round(Farenheit);
-}
 
 let farenheitLink = document.querySelector("#celsius");
 farenheitLink.addEventListener("click", showCelsiusConversion);
