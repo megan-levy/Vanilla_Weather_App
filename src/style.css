@@ -46,8 +46,10 @@ h1 {
     line-height: 1;
     top: -34px;
     font-size: 28px;
+    text-align: center;
     margin-left: -20px;
 }
+
 .col-2 {
     padding: 30px;
     background-color: #2274A5;

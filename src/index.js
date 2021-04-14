@@ -1,4 +1,23 @@
 
+function displayForecast() {
+    let forecastElement = document.querySelector("#forecast");
+    
+    let forecastHTML = `<div class = "row">`;
+    let days = ["Thu", "Fri", "Sat", "Sun", "Mon" ];
+    days.forEach(function(days) {
+            forecastHTML = forecastHTML +
+            `<div class = "col-2">
+                <div class = "forecastDay">${days}</div>
+                <img src = "" alt = "" width = "42"/>
+            <div class = "forecastTemps">
+                <span class = "forecastHigh">65</span>
+                <span class = "forecastLow">45</span>
+                </div>
+            </div>`;
+    });
+    forecastHTML = forecastHTML + `</div`;
+    forecastElement.innerHTML = forecastHTML; 
+}
 
 function displayCurrentTemperature(response) {
     let currentTemperature = document.querySelector("#currentTemp");
@@ -15,6 +34,7 @@ function displayCurrentTemperature(response) {
     humidity.innerHTML = `${response.data.main.humidity}%`;
     currentTemperature.innerHTML = `${Math.round(response.data.main.temp)}`;
     description.innerHTML = `${response.data.weather[0].description}`;
+    displayForecast();
 
 }
 function search(city) {
@@ -50,7 +70,6 @@ if (minute < 10) {
 let dateTime = document.querySelector("#dateTime");
 dateTime.innerHTML = `Last updated on ${day} at ${hour}:${minute}`;
 
-
 let form = document.querySelector("#searchEngine");
 form.addEventListener("submit", handleSubmit);
 
@@ -75,4 +94,5 @@ farenheitLink.addEventListener("click", showCelsiusConversion);
 let celsiuslink = document.querySelector("#farenheit");
 celsiuslink.addEventListener("click", showFarenheitConversion);
 
-search("Columbus");
+search("Cincinnati");
+displayForecast();
