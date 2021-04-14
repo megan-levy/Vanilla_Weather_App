@@ -1,22 +1,30 @@
 
-function displayForecast() {
+function displayForecast(response) {
+    console.log(response.data.daily);
     let forecastElement = document.querySelector("#forecast");
-    
     let forecastHTML = `<div class = "row">`;
+
     let days = ["Thu", "Fri", "Sat", "Sun", "Mon" ];
     days.forEach(function(days) {
             forecastHTML = forecastHTML +
             `<div class = "col-2">
                 <div class = "forecastDay">${days}</div>
-                <img src = "" alt = "" width = "42"/>
+                <img src = "http://openweathermap.org/img/wn/04d@2x.png" alt = "" width = "42"/>
             <div class = "forecastTemps">
                 <span class = "forecastHigh">65</span>
                 <span class = "forecastLow">45</span>
                 </div>
             </div>`;
     });
-    forecastHTML = forecastHTML + `</div`;
+    forecastHTML = forecastHTML + `</div>`;
     forecastElement.innerHTML = forecastHTML; 
+}
+function getForecast(coordinates) {
+    console.log(coordinates);
+    let apiKey = "4a89eb9a057b7d42b2048718c9361f4a";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
+    console.log(apiUrl);
+    axios.get(apiUrl).then(displayForecast);
 }
 
 function displayCurrentTemperature(response) {
@@ -34,8 +42,8 @@ function displayCurrentTemperature(response) {
     humidity.innerHTML = `${response.data.main.humidity}%`;
     currentTemperature.innerHTML = `${Math.round(response.data.main.temp)}`;
     description.innerHTML = `${response.data.weather[0].description}`;
-    displayForecast();
 
+    getForecast(response.data.coord);
 }
 function search(city) {
     let apiKey = "4a89eb9a057b7d42b2048718c9361f4a";
@@ -95,4 +103,3 @@ let celsiuslink = document.querySelector("#farenheit");
 celsiuslink.addEventListener("click", showFarenheitConversion);
 
 search("Cincinnati");
-displayForecast();
