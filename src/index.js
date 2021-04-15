@@ -101,7 +101,6 @@ if (minute < 10) {
     minute = `0${minute}`;
 } 
 
-
 let dateTime = document.querySelector("#dateTime");
 dateTime.innerHTML = `Last updated on ${day} at ${hour}:${minute}`;
 
